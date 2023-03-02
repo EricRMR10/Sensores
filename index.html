@@ -1,0 +1,62 @@
+<IDOCTYPE HTML>
+<HEAD>
+
+	<TITLE>
+		PUREBA LED WIFI
+	</TITLE>
+	<link rel="stylesheet" type="text/css" href="estilos.css">
+	</link>
+	</HEAD>
+	<BODY style="background-color: #00FFE4">
+		<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyD4LMuvR_dLVII7oURIerwVi-22RQN0a3U",
+    authDomain: "sensor-6648b.firebaseapp.com",
+    databaseURL: "https://sensor-6648b-default-rtdb.firebaseio.com",
+    projectId: "sensor-6648b",
+    storageBucket: "sensor-6648b.appspot.com",
+    messagingSenderId: "228999577829",
+    appId: "1:228999577829:web:33a4b2fabd6ed2cb1b940c"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  import{
+  	get, getDatabase, child, ref, onValue
+  }from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+  
+  const db = getDatabase();
+
+  var valor = ref(db, "SENSOR1");
+
+  onValue(valor,(snapshot)=>{
+  	valor = JSON.stringify(snapshot.val(), null, 3);
+  	if(valor == "1"){
+  		led.style.background = "green";
+  	}else{
+  		led.style.background = "red";
+  	}
+  });
+</script>
+		<!--
+			<p style="font-size: 40px;
+			 			border: 5px solid green;
+			 			background-color:#0BF0C6;
+			 			margin-top: 30px;
+			 			margin-left: 15px;
+			 			padding 10px">
+				SENSOR 1
+			</p>
+			-->
+			<DIV class="center fondo">
+			<h1>SENSRO 1</h1>
+			<SPAN id ="led" class="punto"> </SPAN>
+		</DIV>
+	</BODY>
+	</HTML>
